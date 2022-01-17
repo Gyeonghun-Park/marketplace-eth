@@ -28,6 +28,8 @@
       { "extensions": [".tsx"] }
     ],
     "import/extensions": 0,
-    "no-restricted-exports": 0
+    "import/prefer-default-export": 0,
+    "no-restricted-exports": 0,
+    "react/jsx-props-no-spreading": 0
   }
 }

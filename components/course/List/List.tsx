@@ -1,7 +1,13 @@
-function List() {
+import { Course } from '@content/types/course';
+
+interface Props {
+  courses: Course[];
+}
+
+function List({ courses }: Props) {
   return (
     <section className="grid grid-cols-2 gap-4 mb-5">
-      {Array.from({ length: 4 }).map((_, i) => (
+      {courses.map((_, i) => (
         <div
           key={i}
           className="overflow-hidden bg-white shadow-md rounded-xl md:max-w-2xl"

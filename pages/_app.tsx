@@ -7,7 +7,7 @@ type Props = {
 };
 
 function Noop({ children }: Props) {
-  return { children };
+  return <>{children}</>;
 }
 
 function MyApp({

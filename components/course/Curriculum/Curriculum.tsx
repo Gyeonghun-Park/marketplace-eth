@@ -7,7 +7,13 @@ const lectures = [
   'Safe operator',
 ];
 
-function Curriculum() {
+interface Props {
+  locked: boolean;
+}
+
+function Curriculum({ locked }: Props) {
+  const statusClass =
+    'px-2 inline-flex text-xs leading-5 font-semibold rounded-full';
   return (
     <section className="max-w-5xl mx-auto">
       <div className="flex flex-col">
@@ -47,8 +53,14 @@ function Curriculum() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                          Unlocked
+                        <span
+                          className={
+                            locked
+                              ? `bg-red-100 text-red-800 ${statusClass}`
+                              : `bg-green-100 text-green-800 ${statusClass}`
+                          }
+                        >
+                          {locked ? 'Locked' : 'Unlocked'}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -56,7 +68,7 @@ function Curriculum() {
                           href="#"
                           className="text-indigo-600 hover:text-indigo-900"
                         >
-                          Play
+                          {locked ? 'Get Access' : 'Play'}
                         </a>
                       </td>
                     </tr>

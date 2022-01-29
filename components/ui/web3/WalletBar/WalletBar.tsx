@@ -1,8 +1,13 @@
+import { useWeb3 } from '@components/providers';
+
 interface Props {
   address: string;
+  network: any;
 }
 
-function WalletBar({ address }: Props) {
+function WalletBar({ address, network }: Props) {
+  const { requireInstall } = useWeb3();
+
   return (
     <section className="text-white bg-indigo-600">
       <div className="p-8">
@@ -22,10 +27,26 @@ function WalletBar({ address }: Props) {
             </div>
           </div>
           <div>
-            <div>
-              <span>Currently on </span>
-              <strong className="text-2xl">Ethereum Main Network</strong>
-            </div>
+            {network.hasInitialResponse && !network.isSupported && (
+              <div className="p-4 bg-red-400 rounded-lg">
+                <div>Connected to wrong network</div>
+                <div>
+                  Connect to: {` `}
+                  <strong className="text-2xl">{network.target}</strong>
+                </div>
+              </div>
+            )}
+            {requireInstall && (
+              <div className="p-4 bg-yellow-500 rounded-lg">
+                Cannot connect to network. Please install Metamask.
+              </div>
+            )}
+            {network.data && (
+              <div>
+                <span>Currently on </span>
+                <strong className="text-2xl">{network.data}</strong>
+              </div>
+            )}
           </div>
         </div>
       </div>

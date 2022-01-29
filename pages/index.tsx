@@ -1,5 +1,5 @@
 import { Hero } from '@components/ui/common';
-import { CourseList } from '@components/ui/course';
+import { CourseList, CourseCard } from '@components/ui/course';
 import { BaseLayout } from '@components/ui/layout';
 import { getAllCourses } from '@content/courses/fetcher';
 import { Course } from '@content/types/course';
@@ -12,7 +12,9 @@ function Home({ courses }: Props) {
   return (
     <>
       <Hero />
-      <CourseList courses={courses} />
+      <CourseList courses={courses}>
+        {(course: Course) => <CourseCard key={course.id} course={course} />}
+      </CourseList>
     </>
   );
 }
